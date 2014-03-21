@@ -32,7 +32,8 @@ describe "Addition", ->
     c = BigInteger.parse([37879769957, 37879769957, 15595261849])
   
   it "adds two big natural Integer with carry.", ->
-    a = BigInteger.parse([9999999999999999, 9999999999999999])
+
+    a = BigInteger.parse([999999999999999, 999999999999999])
     b = BigInteger.parse(1)
     c = BigInteger.parse([0, 0, 1])
   
