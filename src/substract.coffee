@@ -38,7 +38,7 @@
     # The numbers are equal; the result is zero:
     # a - a = 0
     if resultSign is 0
-      return @ZERO
+      return @ZERO()
     
     # We want to determine a - b with a > b.
     # If it's not the case, we swap a and b:
@@ -60,7 +60,7 @@
       
       if numberPart < 0
         borrow = 1
-        numberPart += @RADIX
+        numberPart += @RADIX()
       else
         borrow = 0
       

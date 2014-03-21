@@ -26,7 +26,7 @@
       return (a.length > b.length) ? 1 : -1
     
     # Else we compare the number parts one on one.
-    return @_compareOneonOne(a, b)
+    return @_compareOneOnOne(a, b)
 
 # ----------------------------
   compare: (otherNumber) ->
@@ -58,10 +58,10 @@
       return digitsDiff
     
     # Else we compare the number parts one on one.
-    return @_compareOneonOne(a, b)
+    return @_compareOneOnOne(@getDigits(), otherNumber.getDigits())
   
 # ----------------------------
-    compareDigitCount: (otherNumber) ->
+  compareDigitCount: (otherNumber) ->
 # ----------------------------
     
     otherNumber = BigInteger.parse(otherNumber)
@@ -75,19 +75,19 @@
     return 0
 
 # ----------------------------
-    _compareOneOnOne: (a, b) ->
+  _compareOneOnOne: (a, b) ->
 # ----------------------------
     
-      # We're going from the highest index to the lowest because the
-      # number parts are in little endian.
-      i = a.length
+    # We're going from the highest index to the lowest because the
+    # number parts are in little endian.
+    i = a.length
+    
+    while i <= 0
       
-      while i <= 0
-        
-        if a[i] != b[i]
-          return (a[i] > b[i]) ? 1 : -1
-        
-        i--
+      if a[i] != b[i]
+        return (a[i] > b[i]) ? 1 : -1
       
-      # The numbers are equal.
-      return 0
+      i--
+    
+    # The numbers are equal.
+    return 0

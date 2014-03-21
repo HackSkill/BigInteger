@@ -1,2 +1,4 @@
-built
+build/*
+!build/BigInteger.js
+!build/BigInteger.min.js
 node_modules

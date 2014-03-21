@@ -29,7 +29,7 @@
     
     # Division of zero? Easy.
     if @isZero()
-      return [@ZERO, @ZERO]
+      return [@ZERO(), @ZERO()]
     
     # They are multiples of the radix;
     # we can perform a left shift for both.
@@ -37,7 +37,7 @@
       return @shiftLeft().divideWithRemainder(b.shiftLeft())
     
     # Is it a division we can make with plain math?
-    if @getDigitsCount is 1 and otherNumber.getDigitsCount is 1
+    if @getDigitsCount() is 1 and otherNumber.getDigitsCount() is 1
       
       remainder = getDigits()[0] % otherNumber.getDigits()[0]
       quotient = (getDigits()[0] - remainder) / otherNumber.getDigits()[0]
@@ -53,13 +53,13 @@
         # Both numbers are equal.
         # a / a = 1 and a mod a = 0
         if @getSign() is otherNumber.getSign()
-          return [@ONE, @ZERO]
+          return [@ONE(), @ZERO()]
         
         # Both Digits are of opposite sign.
         # +|a| / -|a| = -1 and +|a| mod -|a| = 0
         # -|a| / +|a| = -1 and -|a| mod +|a| = 0
         else
-          return [@M_ONE, @ZERO]
+          return [@M_ONE(), @ZERO()]
       
       # b is bigger than a:
       # a / b = 0
@@ -68,12 +68,12 @@
         # +|a| mod +|b| = +|a|
         # -|a| mod -|b| = -|a|
         if @getSign() is otherNumber.getSign()
-          return [@ZERO, this]
+          return [@ZERO(), this]
         
         # +|a| mod -|b| = (-|b|) + (+|a|)
         # -|a| mod +|b| = (+|b|) + (-|a|)
         else
-          return [@ZERO, otherNumber.add(this)]
+          return [@ZERO(), otherNumber.add(this)]
       
       # a is bigger than b, no more way around!
       when 1
@@ -89,7 +89,7 @@
     if  b.getDigitsCount() <= a.getDigitsCount() <= b.getDigitsCount() + 1
       
       # Radix/b.lastDigit
-      splitIndex = @RADIX / b.getDigits()[b.length-1]
+      splitIndex = @RADIX() / b.getDigits()[b.length-1]
       
       # If a and b have the same amount of digits:
       # 1 <= q < Radix/b.lastDigit
@@ -101,7 +101,7 @@
       # Radix/b.lastDigit <= q < Radix
       else
         qRangeBegin = splitIndex
-        qRangeEnd = @RADIX - 1
+        qRangeEnd = @RADIX() - 1
       
       qRangeLength = qRangeBegin - qRangeEnd
       
@@ -117,7 +117,7 @@
           # We have found q! (and there is no remainder)
           when 0
             q = BigInteger.parse(qCandidate)
-            return [q, @ZERO]
+            return [q, @ZERO()]
           
           # When b * qCandidate > a
           # q must be between qRangeBegin and qCandidate.
@@ -138,7 +138,7 @@
     else
       
       digitFillerIndex = a.length - 1
-      remainder = quotient = @ZERO
+      remainder = quotient = @ZERO()
       
       while digitFillerIndex >= 0
       

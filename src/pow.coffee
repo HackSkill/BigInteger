@@ -10,21 +10,21 @@
     
     # 0 ^ exponent = 0
     if @isZero()
-      return @ZERO
+      return @ZERO()
     
     # 1 ^ exponent = 1
     if @isOne()
-      return @ONE
+      return @ONE()
     
     if @isMinusOne()
       
       # If exponent is even; (-1) ^ exponent = 1
       if exponent % 2 is 0
-        return @ONE
+        return @ONE()
       
       # If exponent is odd; (-1) ^ exponent = -1
       else
-        return @M_ONE
+        return @M_ONE()
     
     result = @clone()
     #actualExponent = 1
@@ -86,7 +86,7 @@
     
     # number ^ 0 = 1
     if exponent is 0
-      return @ONE
+      return @ONE()
     
     # number ^ 1 = 1
     if exponent is 1

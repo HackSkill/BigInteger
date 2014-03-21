@@ -1,12 +1,16 @@
 class BigIntegerInstance
-
-  @name: 'BigInteger'
   
-  constructor: (digits, sign) ->
+  constructor: (digits = [42], sign = 1) ->
     @setDigits(digits)
     @setSign(sign)
   
+  forceNumber: (digits, sign) ->
+    @digits = digits
+    @sign = sign
+    return this
+  
   clone: () ->
+    if @isZero() then return @ZERO()
     return BigInteger.parseWithSign(@getDigits(), @getSign())
   
 # ----------------------------
@@ -16,11 +20,11 @@ class BigIntegerInstance
   getSign: -> return @sign
   getDigits: -> return @digits
   getDigitCount: -> return @digits.length
-  getName: -> return @name
+  getName: -> return 'BigInteger'
 
   getInteger: ->
-  
-    if @compareAbs(BigInteger.MAX_INT) is 1
+    
+    if @compareAbs(BigInteger.getMaxInt()) is 1
       throw new Error("This BigInteger is too big to be an integer!")
     
     sum = 0
@@ -41,19 +45,19 @@ class BigIntegerInstance
 
   setSign: (sign) ->
     
-    if isZero() and sign isnt 0
+    if @isZero() and sign isnt 0
       throw new Error("Zero can't have a sign different than 0!")
     
-    if not isZero() and sign isnt 1 && sign isnt -1
-      throw new Error("Illegal Number-Sign!")
+    if not @isZero() and sign isnt 1 and sign isnt -1
+      throw new Error "Illegal Number-Sign!"
     
     @sign = sign
   
-  setNumbers: (digits) ->
+  setDigits: (digits) ->
     
     for digit in digits
-      if not (0 < digit <= BigIntegerStatic.RADIX)
-        throw new Error("Illegal digits chosen for a BigInteger!")
+      if not (0 <= digit < @RADIX())
+        throw new Error("Illegal digits chosen for a BigInteger! -> "+digit)
     
     i = digits.length - 1
     i-- while i > 0 and digits[i] is 0

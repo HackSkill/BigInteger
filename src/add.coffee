@@ -11,14 +11,21 @@
     # No need for calculation: a + 0 = a
     if otherNumber.isZero()
       return @clone()
+  
+    # No need for calculation: 0 + b = b
+    if @isZero()
+      return otherNumber.clone()
     
     # Signs are not equal; we're dealing with a substraction.
     if otherNumber.getSign() isnt @getSign()
       
       if @isPositive()
-        @substract(otherNumber)
+        otherNumber = otherNumber.negate()
+        return @substract(otherNumber)
+      
       else
-        otherNumber.substract(this)
+        @negate()
+        return otherNumber.substract(this)
     
     
     a = @getDigits()
@@ -46,12 +53,12 @@
         numberPart = carry
       
       if i < b.length or carry isnt 0
-        sumNumbers[i] = numberPart % @RADIX
-        carry = numberPart // @RADIX
+        sumNumbers[i] = numberPart % @RADIX()
+        carry = (numberPart / @RADIX()) | 0
         
       else
         sumNumbers[i] = numberPart
         
       i++
     
-    return BigInteger.parseWithSign(sumNumbers, @getSign)
+    return BigInteger.parseWithSign(sumNumbers, @getSign())

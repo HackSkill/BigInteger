@@ -20,17 +20,17 @@
 # ----------------------------
   isUnit: ->
 # ----------------------------
-    return @getDigitCount is 1 and @getDigits()[0] is 1
+    return @getDigitCount() is 1 and @getDigits()[0] is 1
 
 # ----------------------------
   isOne: ->
 # ----------------------------
-    return @isUnit and @getSign is 1
+    return @isUnit() and @getSign() is 1
 
 # ----------------------------
   isMinusOne: ->
 # ----------------------------
-    return @isUnit and @getSign is -1
+    return @isUnit() and @getSign() is -1
 
 # ----------------------------
   isEven: ->
@@ -40,4 +40,9 @@
 # ----------------------------
   isOdd: ->
 # ----------------------------
-    return not isEven()
+    return not @isEven()
+
+# ----------------------------
+  isEqual: (otherNumber) ->
+# ----------------------------
+    return @compare(otherNumber) is 0
