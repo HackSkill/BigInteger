@@ -31,7 +31,7 @@ class BigIntegerInstance
     sum = 0
     sum += digit for digit in @getDigits()
       
-    return sum
+    return sum * @getSign()
 
   #Static getters:
   ZERO: -> return BigInteger.getSmall(0)
