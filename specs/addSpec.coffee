@@ -3,7 +3,7 @@ describe "Addition", ->
   a = b = c = null
 
   afterEach ->
-    expect(a.add(b).isEqual(c)).toEqual(true)
+    expect(a.add(b).getData()).toEqual(c.getData())
   
   it "adds to zero.", ->
     a = c = BigInteger.parse(875231546223)

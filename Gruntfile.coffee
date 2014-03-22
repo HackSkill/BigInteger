@@ -59,6 +59,7 @@ module.exports = (grunt) ->
       test:
         src: [
           'build/BigInteger.coffee'
+          'specs/parseSpec.coffee'
           'specs/testFctSpec.coffee'
           'specs/signOpSpec.coffee'
           'specs/compareOpSpec.coffee'

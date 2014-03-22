@@ -4,9 +4,9 @@ class BigIntegerInstance
     @setDigits(digits)
     @setSign(sign)
   
-  forceNumber: (digits, sign) ->
-    @digits = digits
-    @sign = sign
+  toZero: () ->
+    @digits = [0]
+    @sign = 0
     return this
   
   clone: () ->
@@ -21,6 +21,7 @@ class BigIntegerInstance
   getDigits: -> return @digits
   getDigitCount: -> return @digits.length
   getName: -> return 'BigInteger'
+  getData: -> return [@getDigits(), @getSign()]
 
   getInteger: ->
     

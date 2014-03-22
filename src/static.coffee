@@ -17,13 +17,15 @@ BigInteger =
     switch number
       
       when 0
-        @ZERO ?= (new BigIntegerInstance()).forceNumber([0], 0)
+        @ZERO ?= (new BigIntegerInstance()).toZero()
         return @ZERO
+      
       when 1
-        @ONE ?= (new BigIntegerInstance([1], 1))
+        @ONE ?= new BigIntegerInstance([1], 1)
         return @ONE
+      
       when -1
-        @M_ONE ?= (new BigIntegerInstance([1], -1))
+        @M_ONE ?= new BigIntegerInstance([1], -1)
         return @M_ONE
       
       else throw new Error("The given number is not small!")
