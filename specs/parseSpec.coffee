@@ -27,9 +27,9 @@ describe "Parsing", ->
     b = new BigIntegerInstance([8752315462], -1)
   
   it "parses a big natural integer.", ->
-    a = BigInteger.parse(121234567891234567)
-    b = new BigIntegerInstance([234567891234567,121], 1)
+    a = BigInteger.parse(12123456789123456)
+    b = new BigIntegerInstance([123456789123456,12], 1)
   
   it "parses a big negative integer.", ->
-    a = BigInteger.parse(-121234567891234567)
-    b = new BigIntegerInstance([234567891234567,121], -1)
+    a = BigInteger.parse(-12123456789123456)
+    b = new BigIntegerInstance([123456789123456,12], -1)

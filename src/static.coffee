@@ -97,6 +97,7 @@ BigInteger =
       number = (number / @RADIX) | 0
       i++
     
+    result[i] = number
     return result
 
 # ----------------------------
