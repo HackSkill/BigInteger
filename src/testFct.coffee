@@ -15,7 +15,7 @@
 # ----------------------------
   isNegative: ->
 # ----------------------------
-    return not @isPositive()
+    return (@getSign() is -1)
 
 # ----------------------------
   isUnit: ->
@@ -45,4 +45,4 @@
 # ----------------------------
   isEqual: (otherNumber) ->
 # ----------------------------
-    return @compare(otherNumber) is 0
+    return (@compare(otherNumber) is 0)

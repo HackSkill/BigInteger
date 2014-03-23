@@ -8,7 +8,7 @@
     
     otherNumber = BigInteger.parse(otherNumber)
     
-    if otherNumber is this
+    if otherNumber.getData() is @getData()
       return 0
     
     # If one of the numbers is zero:
@@ -34,7 +34,7 @@
     
     otherNumber = BigInteger.parse(otherNumber)
     
-    if otherNumber is this
+    if otherNumber.getData() is @getData()
       return 0
     
     # If one of the numbers is zero:
@@ -80,9 +80,9 @@
     
     # We're going from the highest index to the lowest because the
     # number parts are in little endian.
-    i = a.length
+    i = a.length - 1
     
-    while i <= 0
+    while i >= 0
       
       if a[i] != b[i]
         return (a[i] > b[i]) ? 1 : -1
