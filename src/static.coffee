@@ -60,7 +60,7 @@ BigInteger =
         if number isnt number | 0
           throw new Error("A BigInteger can't be a float!")
         
-        if -1 <= number <= 1
+        if number is 0
           return @getSmall(number)
         
         sign = if number > 0 then 1 else -1

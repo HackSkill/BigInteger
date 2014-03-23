@@ -5,13 +5,10 @@
 # ----------------------------
   negate: ->
 # ----------------------------
-    return @setSign(-@getSign())
+    @setSign(-@getSign())
 
 # ----------------------------
   abs: ->
 # ----------------------------
-    if @getSign() is 1
-      return this
-    
-    else
-      return @negate()
+    if @getSign() isnt 1
+      @negate()
