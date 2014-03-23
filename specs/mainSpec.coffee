@@ -10,7 +10,7 @@ describe "Main functions", ->
     expect(a.getName()).toEqual("BigInteger")
   
   it "makes zero.", ->
-    a = BigInteger.getSmall(0)
+    a = BigInteger.getZero()
     b = (new BigIntegerInstance()).toZero()
     expect(a.getData()).toEqual(b.getData())
   
@@ -21,15 +21,17 @@ describe "Main functions", ->
   
   it "gets ZERO.", ->
     a = new BigIntegerInstance()
-    expect(a.ZERO().getData()).toEqual(BigInteger.getSmall(0).getData())
+    expect(a.ZERO().getData()).toEqual(BigInteger.getZero().getData())
   
   it "gets ONE.", ->
     a = new BigIntegerInstance()
-    expect(a.ONE().getData()).toEqual(BigInteger.getSmall(1).getData())
+    b = new BigIntegerInstance([1], 1)
+    expect(a.ONE().getData()).toEqual(b.getData())
   
   it "gets M_ONE.", ->
     a = new BigIntegerInstance()
-    expect(a.M_ONE().getData()).toEqual(BigInteger.getSmall(-1).getData())
+    b = new BigIntegerInstance([1], -1)
+    expect(a.M_ONE().getData()).toEqual(b.getData())
   
   it "gets RADIX.", ->
     a = new BigIntegerInstance()

@@ -34,9 +34,9 @@ class BigIntegerInstance
     return sum * @getSign()
 
   #Static getters:
-  ZERO: -> return BigInteger.getSmall(0)
-  ONE: -> return BigInteger.getSmall(1)
-  M_ONE: -> return BigInteger.getSmall(-1)
+  ZERO: -> return BigInteger.getZero()
+  ONE: -> return BigInteger.parse(1)
+  M_ONE: -> return BigInteger.parse(-1)
 
   RADIX: -> return BigInteger.RADIX
 

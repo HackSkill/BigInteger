@@ -4,31 +4,13 @@ BigInteger =
   RADIX_LOG10: 16
   name: "BigIntegerStatic"
   
-  ZERO: undefined
-  ONE: undefined
-  M_ONE: undefined
-  
-  MAX_INT: undefined
+  ZERO: null
+  MAX_INT: null
   
 # ----------------------------
-  getSmall: (number) ->
+  getZero: ->
 # ----------------------------
-    
-    switch number
-      
-      when 0
-        @ZERO ?= (new BigIntegerInstance()).toZero()
-        return @ZERO
-      
-      when 1
-        @ONE ?= new BigIntegerInstance([1], 1)
-        return @ONE
-      
-      when -1
-        @M_ONE ?= new BigIntegerInstance([1], -1)
-        return @M_ONE
-      
-      else throw new Error("The given number is not small!")
+    return (new BigIntegerInstance()).toZero()
 
 # ----------------------------
   getMaxInt: ->
@@ -61,7 +43,7 @@ BigInteger =
           throw new Error("A BigInteger can't be a float!")
         
         if number is 0
-          return @getSmall(number)
+          return @getZero()
         
         sign = if number > 0 then 1 else -1
         absNumber = sign * number
