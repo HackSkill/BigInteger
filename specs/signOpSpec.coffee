@@ -13,24 +13,30 @@ describe "Sign Operations", ->
   
   it "negates numbers.", ->
     
-    number.negate() for number in numbers
-    
-    expect(numbers).toEqual([
+    expectations = [
       BigInteger.parse(0) # 0
       BigInteger.parse(-1) # 1
       BigInteger.parse(1) # -1
       BigInteger.parse(-215481523) # 215481523
       BigInteger.parse(215481525) # -215481525
-      ])
+    ]
+    
+    number.negate() for number in numbers
+    
+    for expectation, i in expectations
+      expect(numbers[i].getData()).toEqual(expectation.getData())
   
   it "gives back absolute numbers.", ->
     
-    number.abs() for number in numbers
-    
-    expect(numbers).toEqual([
+    expectations = [
       BigInteger.parse(0) # 0
       BigInteger.parse(1) # 1
       BigInteger.parse(1) # -1
       BigInteger.parse(215481523) # 215481523
       BigInteger.parse(215481525) # -215481525
-      ])
+    ]
+    
+    number.abs() for number in numbers
+      
+    for expectation, i in expectations
+      expect(numbers[i].getData()).toEqual(expectation.getData())

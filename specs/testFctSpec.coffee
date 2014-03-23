@@ -15,8 +15,7 @@ describe "Test Functions", ->
   
   it "tests if a number is ZERO.", ->
     
-    result = (number.isZero() for number in numbers)
-    expect(result).toEqual([
+    expectations = [
       true # 0
       false # 1
       false # -1
@@ -24,12 +23,16 @@ describe "Test Functions", ->
       false # -215481525
       false # 215481520
       false # -215481524
-      ])
+    ]
+    
+    result = (number.isZero() for number in numbers)
+    
+    for expectation, i in expectations
+      expect(result[i]).toEqual(expectation)
   
   it "tests if a number is positive.", ->
     
-    result = (number.isPositive() for number in numbers)
-    expect(result).toEqual([
+    expectations = [
       false # 0
       true # 1
       false # -1
@@ -37,12 +40,16 @@ describe "Test Functions", ->
       false # -215481525
       true # 215481520
       false # -215481524
-      ])
+      ]
+    
+    result = (number.isPositive() for number in numbers)
+    
+    for expectation, i in expectations
+      expect(result[i]).toEqual(expectation)
   
   it "tests if a number is negative.", ->
     
-    result = (number.isNegative() for number in numbers)
-    expect(result).toEqual([
+    expectations = [
       false # 0
       false # 1
       true # -1
@@ -50,12 +57,16 @@ describe "Test Functions", ->
       true # -215481525
       false # 215481520
       true # -215481524
-      ])
+      ]
+    
+    result = (number.isNegative() for number in numbers)
+    
+    for expectation, i in expectations
+      expect(result[i]).toEqual(expectation)
   
   it "tests if a number is a unit.", ->
     
-    result = (number.isUnit() for number in numbers)
-    expect(result).toEqual([
+    expectations = [
       false # 0
       true # 1
       true # -1
@@ -63,12 +74,16 @@ describe "Test Functions", ->
       false # -215481525
       false # 215481520
       false # -215481524
-      ])
+      ]
+    
+    result = (number.isUnit() for number in numbers)
+    
+    for expectation, i in expectations
+      expect(result[i]).toEqual(expectation)
   
   it "tests if a number is ONE.", ->
     
-    result = (number.isOne() for number in numbers)
-    expect(result).toEqual([
+    expectations = [
       false # 0
       true # 1
       false # -1
@@ -76,12 +91,16 @@ describe "Test Functions", ->
       false # -215481525
       false # 215481520
       false # -215481524
-      ])
+      ]
+    
+    result = (number.isOne() for number in numbers)
+    
+    for expectation, i in expectations
+      expect(result[i]).toEqual(expectation)
   
   it "tests if a number is M_ONE.", ->
     
-    result = (number.isMinusOne() for number in numbers)
-    expect(result).toEqual([
+    expectations = [
       false # 0
       false # 1
       true # -1
@@ -89,12 +108,16 @@ describe "Test Functions", ->
       false # -215481525
       false # 215481520
       false # -215481524
-      ])
+      ]
+    
+    result = (number.isMinusOne() for number in numbers)
+    
+    for expectation, i in expectations
+      expect(result[i]).toEqual(expectation)
   
   it "tests if a number is even.", ->
     
-    result = (number.isEven() for number in numbers)
-    expect(result).toEqual([
+    expectations = [
       true # 0
       false # 1
       false # -1
@@ -102,12 +125,16 @@ describe "Test Functions", ->
       false # -215481525
       true # 215481520
       true # -215481524
-      ])
+      ]
+    
+    result = (number.isEven() for number in numbers)
+    
+    for expectation, i in expectations
+      expect(result[i]).toEqual(expectation)
   
   it "tests if a number is odd.", ->
     
-    result = (number.isOdd() for number in numbers)
-    expect(result).toEqual([
+    expectations = [
       false # 0
       true # 1
       true # -1
@@ -115,12 +142,16 @@ describe "Test Functions", ->
       true # -215481525
       false # 215481520
       false # -215481524
-      ])
+      ]
+    
+    result = (number.isOdd() for number in numbers)
+    
+    for expectation, i in expectations
+      expect(result[i]).toEqual(expectation)
   
   it "tests if a number is equal to another.", ->
     
-    result = (number.isEqual(215481523) for number in numbers)
-    expect(result).toEqual([
+    expectations = [
       false # 0
       false # 1
       false # -1
@@ -128,5 +159,10 @@ describe "Test Functions", ->
       false # -215481525
       false # 215481520
       false # -215481524
-      ])
+      ]
+    
+    result = (number.isEqual(215481523) for number in numbers)
+    
+    for expectation, i in expectations
+      expect(result[i]).toEqual(expectation)
   
