@@ -6,34 +6,36 @@
   substract: (otherNumber) ->
 # ----------------------------
     
-    otherNumber = BigInteger.parse(otherNumber)
+    a = this
+    b = BigInteger.parse(otherNumber)
+    
+    #console.log "Substraction begin: ("+a.getDigits()+") - ("+b.getDigits()+")"
     
     #If one of the numbers is zero.
-    if @isZero()
-      return otherNumber.negate()
+    if a.isZero()
+      b.negate()
+      return b
     
-    if otherNumber.isZero()
-      return this
-    
-    a = @getDigits()
-    b = otherNumber.getDigits()
+    if b.isZero()
+      return a
     
     # Signs are not equal; we're dealing with an addition:
     # (+|a|) - (-|b|) = (+|a|) + (+|b|)
     # (-|a|) - (+|b|) = (-|a|) + (-|b|)
-    if otherNumber.getSign() isnt @getSign()
-      return @add(otherNumber.negate())
+    if b.getSign() isnt a.getSign()
+      b.negate()
+      return a.add(b)
     
     # We want a and b to be positive.
     # If they're not, we need to switch them:
     # (-|a|) - (-|b|) = (+|b|) - (+|a|)
-    if @isNegative()
+    if a.isNegative()
       [a, b] = [b, a]
     
     # We compare a and b to get the result's sign.
     # If a > b then a - b > 0.
     # If a < b then a - b < 0.
-    resultSign = @compareAbs(otherNumber)
+    resultSign = a.compareAbs(b)
     
     # The numbers are equal; the result is zero:
     # a - a = 0
@@ -48,8 +50,11 @@
     
     diffNumbers = []
     numberPart = 0
-    carry = 0
+    borrow = 0
     i = 0
+    
+    a = a.getDigits()
+    b = b.getDigits()
     
     while i < a.length
       
