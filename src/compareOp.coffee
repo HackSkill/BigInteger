@@ -23,7 +23,7 @@
     b = otherNumber.getDigits()
     
     if a.length isnt b.length
-      return (a.length > b.length) ? 1 : -1
+      return if a.length > b.length then 1 else -1
     
     # Else we compare the number parts one on one.
     return @_compareOneOnOne(a, b)
@@ -70,7 +70,7 @@
     b = otherNumber.getDigitCount()
     
     if a isnt b
-      return (a > b) ? 1 : -1
+      return if a > b then 1 else -1
     
     return 0
 
@@ -85,7 +85,7 @@
     while i >= 0
       
       if a[i] != b[i]
-        return (a[i] > b[i]) ? 1 : -1
+        return (if a[i] > b[i] then 1 else -1)
       
       i--
     

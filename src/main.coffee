@@ -46,10 +46,17 @@ class BigIntegerInstance
 
   setSign: (sign) ->
     
-    if @isZero() and sign isnt 0
-      throw new Error("Zero can't have a sign different than 0!")
+    if @isZero()
+      
+      # In case we submit a -0.
+      if sign is 0 or 1/sign is -Infinity
+        sign = Math.abs(sign)
+      
+      else
+        throw new Error("Zero can't have a sign different than 0!")
     
-    if not @isZero() and sign isnt 1 and sign isnt -1
+    # Sign isn't valid.
+    else if sign isnt 1 and sign isnt -1
       throw new Error "Illegal Number-Sign!"
     
     @sign = sign
@@ -57,8 +64,13 @@ class BigIntegerInstance
   setDigits: (digits) ->
     
     for digit in digits
+      
       if not (0 <= digit < @RADIX())
         throw new Error("Illegal digits chosen for a BigInteger! -> "+digit)
+      
+      # Setting all -0 to 0
+      if digit is 0
+        digit = Math.abs(digit)
     
     i = digits.length - 1
     i-- while i > 0 and digits[i] is 0
