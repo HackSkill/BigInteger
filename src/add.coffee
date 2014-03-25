@@ -20,7 +20,7 @@
     if otherNumber.getSign() isnt @getSign()
       
       if @isPositive()
-        otherNumber = otherNumber.negate()
+        otherNumber.negate()
         return @substract(otherNumber)
       
       else
