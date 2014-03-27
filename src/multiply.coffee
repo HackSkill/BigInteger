@@ -19,7 +19,8 @@
     # (+|a|) * (-|b|) = - ((+|a|) * (+|b|))
     # (-|a|) * (+|b|) = - ((+|a|) * (+|b|))
     if @getSign() isnt otherNumber.getSign()
-      return result.negate()
+      result.negate()
+      return result
     
     return result
   
@@ -34,7 +35,16 @@
     if otherNumber.isZero() or @isZero()
       return @ZERO()
     
-    multDigits = _karatsubaMult(@getDigits(), otherNumber.getDigits())
+    # If one of the number is the unit:
+    # 1 * b = b
+    if @isUnit()
+      return otherNumber
+    
+    # a * 1 = a
+    if otherNumber.isUnit()
+      return this
+    
+    multDigits = @_karatsubaMult(@getDigits(), otherNumber.getDigits())
     
     return BigInteger.parseWithSign(multDigits, 1)
   
@@ -46,25 +56,25 @@
     # Direct multiplication is safe here since the numbers are
     # lower than the square root of the maximal integer value.
     if a.length is 1 and b.length is 1
-      return BigInteger.parse([a[0] * b[0]])
+      return BigInteger.parse(a[0] * b[0])
     
     splitIndex = (Math.max(a.length, b.length) / 2) | 0
     
     # Spliting a and b at the spliting index if possible.
     
     if splitIndex < a.length
-      [lowerA, higherA] = [a[..splitIndex], a[splitIndex..]]
+      [lowerA, higherA] = [a[..splitIndex-1], a[(splitIndex)..]]
     else
       [lowerA, higherA] = [a, [0]]
     
     if splitIndex < b.length
-      [lowerB, higherB] = [b[..splitIndex], b[splitIndex..]]
+      [lowerB, higherB] = [b[..splitIndex-1], b[(splitIndex)..]]
     else
       [lowerB, higherB] = [b, [0]]
     
     # Parsing a's and b's parts to BigIntegers.
     numbers = [lowerA, higherA, lowerB, higherB]
-    numbers = BigInteger.parse(number) for number in numbers
+    numbers = (BigInteger.parse(number) for number in numbers)
     [lowerA, higherA, lowerB, higherB] = numbers
     
     sumA = lowerA.add(higherA)
@@ -77,5 +87,7 @@
       .shiftRight(splitIndex)
     
     lowMult = lowerA.multiplyAbs(lowerB)
+    
+    
     
     return highMult.add(middleMult.add(lowMult))
